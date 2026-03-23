@@ -207,7 +207,10 @@ def find_first_orf(sequence,
     # exactly. Change `orf_pattern_str` so that it will match any open reading
     # frame.
     # Read the docstring above for additional clues.
-    orf_pattern_str = r'AUGGUAUAA'
+    start_options = "|".join(starts)
+    stop_options = "|".join(stops)
+    orf_pattern_str = r'(' + start_options + ')([AUGC]{3})*(' + stop_options +')'
+    # (AUG) -- (zero or more codons) -- (UAA|UAG|UGA)
     ##########################################################################
 
     # Create the regular expression object
